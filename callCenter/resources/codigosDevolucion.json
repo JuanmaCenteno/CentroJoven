@@ -1,0 +1,102 @@
+[
+    {
+        "codigo": "AC01",
+        "descripcion": "Número de IBAN incorrecto"
+    },
+    {
+        "codigo": "AC04",
+        "descripcion": "Número de cuenta cancelada"
+    },
+    {
+        "codigo": "AC06",
+        "descripcion": "Cuenta bloqueada"
+    },
+    {
+        "codigo": "AC13",
+        "descripcion": "Error en el tipo de cuenta del deudor"
+    },
+    {
+        "codigo": "AG01",
+        "descripcion": "La cuenta no admite adeudos directos por razones de normativas"
+    },
+    {
+        "codigo": "AG02",
+        "descripcion": "Código de operación, transacción o secuencia incorrecto"
+    },
+    {
+        "codigo": "AM04",
+        "descripcion": "Saldo insuficiente"
+    },
+    {
+        "codigo": "AM05",
+        "descripcion": "Cargo u operación duplicada"
+    },
+    {
+        "codigo": "BE05",
+        "descripcion": "Error identificador del acreedor"
+    },
+    {
+        "codigo": "CNOR",
+        "descripcion": "BIC banco acreedor no registrado"
+    },
+    {
+        "codigo": "DNOR",
+        "descripcion": "BIC banco deudor no registrado"
+    },
+    {
+        "codigo": "FF01",
+        "descripcion": "Formato de fichero XML erróneo"
+    },
+    {
+        "codigo": "FF05",
+        "descripcion": "Código de transacción incorrecto (tipo de adeudo)"
+    },
+    {
+        "codigo": "MD01",
+        "descripcion": "Mandato no válido o inexistente / operación no autorizada"
+    },
+    {
+        "codigo": "MD02",
+        "descripcion": "Faltan datos del mandato o mandato incorrecto"
+    },
+    {
+        "codigo": "MD06",
+        "descripcion": "No conforme con el cargo"
+    },
+    {
+        "codigo": "MD07",
+        "descripcion": "Fallecimiento del deudor"
+    },
+    {
+        "codigo": "MS02",
+        "descripcion": "Razón no especificada por el cliente"
+    },
+    {
+        "codigo": "MS03",
+        "descripcion": "Razón no especificada (protección de datos)"
+    },
+    {
+        "codigo": "RC01",
+        "descripcion": "Invalid BIC"
+    },
+    {
+        "codigo": "RR01",
+        "descripcion": "Error en el IBAN del deudor"
+    },
+    {
+        "codigo": "RR02",
+        "descripcion": "Falta el nombre del deudor"
+    },
+    {
+        "codigo": "RR03",
+        "descripcion": "Falta nombre del acreedor"
+    },
+    {
+        "codigo": "RR04",
+        "descripcion": "Error por motivos normativos"
+    },
+    {
+        "codigo": "SL01",
+        "descripcion": "Servicios específicos del banco del deudor"
+    }
+]

@@ -1,0 +1,18 @@
+.errorMsg{
+    color: red;
+    display: none;
+}
+
+.okMsg{
+    color: green;
+    display: none;
+    font-size: large;
+}
+
+.err{
+    font-size: large;
+}
+
+.oculto{
+    display: none;
+}
