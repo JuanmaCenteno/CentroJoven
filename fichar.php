@@ -3,9 +3,9 @@
         session_start();
     }
     
+    $_SESSION['id'] = "2";
     //echo $_SESSION['dni'];
     
-    //include_once $_SERVER['DOCUMENT_ROOT'] . "/ProyectoEmpresa/conexDB.php";
     ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -46,8 +46,12 @@
                     <div class="row mt-3">
                         <button id="btnSalida" type="submit" class="btn btn-danger btn-lg ms-2">Salida</button>
                     </div>
-                </div>
-                <div class="col">
+                    <?php if ($_SESSION['id'] == "1" || $_SESSION['id'] == 1) { ?>
+                       <div class="row mt-3">
+                            <button id="btnAdmin" type="submit" class="btn btn-primary btn-lg ms-2">Panel de Administración</button>
+                        </div>
+                    <?php } ?>
+                    
                 </div>
             </div>
         </div>

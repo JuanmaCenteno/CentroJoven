@@ -1,37 +1,3 @@
-// Patrones de validación
-var patronDate = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
-var patronTlfMovil = new RegExp("(\\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}");
-var patronTlfFijo = new RegExp("(\\+34|0034|34)?[ -]*(9)[ -]*([0-9][ -]*){8}");
-var patronEmail = new RegExp("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$");
-
-// Variables de validación
-var direccionInstalacionValida = false;
-var dniValido = false;
-var razonSocialValido = false;
-var nombreApellidosValido = false;
-var fechaValido = false;
-var movilValido = false;
-var emailValido = false;
-var checkDatos = false;
-var date = "";
-var checkNumeroNuevo = false;
-var checkNumeroAntiguo = false;
-var movilNuevoValido = false;
-var checkTitular = false;
-var iban = "";
-var ibanValido = false;
-var direccionValida = false;
-var checkNuevaDireccion = true;
-var direccionFacturacionValida = false;
-var checkPrestacion = false;
-var municipioSeleccionado = false;
-var calleSeleccionada = false;
-var tarjetaOk = false;
-var fechTarjOk = false;
-var tarj = false;
-
-
-
 $(document).ready(function () {
     // POST
     
@@ -84,4 +50,41 @@ $(document).ready(function () {
             alert("Tiene campos sin rellenar");
         }
     }); 
+
+
 });
+
+
+var loadCombos = function (plataforma) {
+    $.ajax({
+        type: 'GET',
+        url: 'api_datos.php',
+        contentType: "text/plain",
+        dataType: 'json',
+        data: {
+            accion: "tiposConexion",
+            plataforma: plataforma
+        },
+        success: function (data) {
+            myJsonData = data;
+            //console.log(myJsonData);
+            cargarComboVoluntarios(myJsonData);
+        },
+        error: function (e) {
+            console.log("There was an error with your request...");
+            console.log("error: " + JSON.stringify(e));
+        }
+    });
+}
+
+var cargarComboVoluntarios = function (datos) {
+    var combo2 = document.getElementById("selectCodigoCliente");
+    for (var i = 0; i < datos.length; i++) {
+        var opt = datos[i];
+        var el = document.createElement("option");
+        el.textContent = opt.apellidos;
+        el.value = opt.id;
+        combo2.appendChild(el);
+    }
+    $('#selectCodigoCliente').selectpicker('refresh');
+};

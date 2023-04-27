@@ -52,7 +52,7 @@ $(document).ready(function () {
             e.preventDefault();
             var formData = new FormData($('#formData')[0]);        
             $.ajax({
-                url: 'formRegistro.php',
+                url: './funciones/formRegistro.php',
                 type: 'POST',
                 data: formData,
                 async: false,

@@ -8,7 +8,6 @@
       exit();
     }
     
-    //include_once $_SERVER['DOCUMENT_ROOT'] . "/ProyectoEmpresa/conexDB.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
