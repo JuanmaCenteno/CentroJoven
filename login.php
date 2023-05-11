@@ -2,12 +2,11 @@
     if (!isset($_SESSION)) {
         session_start();
     }
-
+    
     if ($_SESSION['dni'] != '') {
       header("Location: fichar.php");
       exit();
     }
-    
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -71,6 +70,7 @@
                                             </div>
                                         </div>
                                         <div class="d-flex justify-content-end pt-3">
+                                            <a style = "margin-right: 5%; margin-top: 1.9%;" href ="register.php">No estás registrado?  Registrarme</a>
                                             <button id="btnLogin" type="submit" class="btn btn-warning btn-lg ms-2">Iniciar Sesión</button>
                                         </div>
                                     </div>

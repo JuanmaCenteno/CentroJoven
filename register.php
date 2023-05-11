@@ -4,7 +4,7 @@
     }
 
     if ($_SESSION['dni'] != '') {
-        header("Location: fichar.php");
+        header("Location: login.php");
         exit();
     }
     
@@ -190,6 +190,7 @@
                                                 </div>
                                             </div>
                                             <div class="d-flex justify-content-end pt-3">
+                                                <a style = "margin-right: 5%; margin-top: 1.9%;" href ="login.php">Ya estás registrado? Iniciar sesión</a>
                                                 <button id="btnRegister" type="submit" class="btn btn-warning btn-lg ms-2" disabled>Registro</button>
                                             </div>
                                         </div>

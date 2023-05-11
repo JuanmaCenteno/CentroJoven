@@ -19,25 +19,42 @@ $db = DB::getInstance();
 $tipo = htmlspecialchars($_POST["tipo"], ENT_QUOTES);
 $dni = $_SESSION["dni"];
 $fecha = date("Y-m-d H:i:s", time());
+$fechaComprobar = date("Y-m-d", time()) . "%";
 
 // Código BD
-// Inserción salida
-
-$query = "INSERT INTO centrojoven.historial VALUES(null,?,?,?)"; // 3
+// TODO - Comprobar que no ha salido antes de entrado
+// Primero comprobamos que no hay ninguna entrada/salida
+$query = "SELECT * FROM centrojoven.historial WHERE dniVoluntario like ? AND fechayhora like ? AND tipo LIKE ?";
 $stmt = $db->prepare($query);
-$stmt->bind_param('sss',$dni, $tipo, $fecha);
-try{
-    $stmt->execute();
-    if ($stmt) {
-        echo "Inserción enviada";    
-    } else {
-        echo "Error en la inserción de solicitud";
-        exit;
+$stmt->bind_param('sss',$dni, $fechaComprobar, $tipo);
+$stmt->execute();
+$res = $stmt->get_result();
+$resultado = [];
+while ($row = $res->fetch_array(MYSQLI_ASSOC)) {
+    array_push($resultado, $row);
+}
+
+// Si está vacío significa que es la primera vez que ficha
+
+if(empty($resultado)){
+    // Inserción salida
+    $query = "INSERT INTO centrojoven.historial VALUES(null,?,?,?)"; // 3
+    $stmt = $db->prepare($query);
+    $stmt->bind_param('sss',$dni, $tipo, $fecha);
+    try{
+        $stmt->execute();
+        if ($stmt) {
+            $resultado = [ "mensaje"  => ucfirst($tipo) . " registrada correctamente."];  
+        } else {
+            $resultado = [ "mensaje"  => "Error en la " . $tipo];
+        }
+    } catch (mysqli_sql_exception $e) {
+        $resultado = [ "mensaje"  => "Ya has fichado la " . $tipo . " hoy."];
     }
-} catch (mysqli_sql_exception $e) {
-    echo json_encode(array(
-        "respuesta" => "Duplicado"
-    ));
+}
+else{
+    $resultado = [ "mensaje"  => "Ya has fichado la " . $tipo . " hoy."];
 }
 
 $db->close();
+echo json_encode($resultado);

@@ -16,7 +16,7 @@
         <title>Administración Voluntarios</title>
         <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
         <!-- Custom styles -->
-        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="estilos.css" />
        <!-- mobile settings -->
         <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
         <!-- WEB FONTS -->
@@ -32,61 +32,60 @@
         <!-- Selectpicker -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
     </head>
-    <body class="bg-black">
-        <div class="container py-5 h-100 bg-primary">
-            <div class="row d-flex justify-content-center align-items-center h-100 bg-secondary">
-                <div class="row">
-                </div>
-                <div class="row">
-                    <div class="table-responsive" style="width: 190%;">
-                        <div class="table-wrapper">
-                            <div class="table-title">
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h2 style="color:white">Gestionar <b>Voluntarios</b></h2>
-                                    </div>
-                                    <div class="col">
-                                        <a href='#addVoluntarioModal' class="btn btn-success" data-toggle='modal'><i class="material-icons">&#xE147;</i> <span>Añadir Nuevo Voluntario</span></a>
-                                    </div>
-                                </div>
+    <body>
+        <div class= "contenedor">
+
+        <div class="container py-3">
+            
+            <div class="table-responsive" style="width: 190%;">
+                <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h2 style="color:white">Gestionar <b>Voluntarios</b></h2>
                             </div>
-                            <table id="dt_voluntarios" class="table table-striped table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Nombre</th>
-                                        <th>Apellido 1</th>
-                                        <th>Apellido 2</th>
-                                        <th>DNI</th>
-                                        <th>Fecha Nacimiento</th>
-                                        <th>Email</th>
-                                        <th>Contraseña</th>
-                                        <th>Dirección</th>
-                                        <th>C. Postal</th>
-                                        <th>Tlf Móvil</th>
-                                        <th>Acción</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- Tabla historial -->
-                        <div class="table-wrapper">
-                            <table id="dt_historial" class="table table-striped table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Voluntario</th>
-                                        <th>Tipo</th>
-                                        <th>Fecha y Hora</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
+                            <div class="col">
+                                <a href='#addVoluntarioModal' class="btn btn-success" data-toggle='modal'><i class="material-icons">&#xE147;</i> <span>Añadir Nuevo Voluntario</span></a>
+                            </div>
                         </div>
                     </div>
+                    <table id="dt_voluntarios" class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellido 1</th>
+                                <th>Apellido 2</th>
+                                <th>DNI</th>
+                                <th>Fecha Nacimiento</th>
+                                <th>Email</th>
+                                <th>Contraseña</th>
+                                <th>Dirección</th>
+                                <th>C. Postal</th>
+                                <th>Tlf Móvil</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Tabla historial -->
+                <h4 style="color:white">Historial <b>Entradas y Salidas</b></h4>
+                <div class="table-wrapper mt-3">
+                    <table id="dt_historial" class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Voluntario</th>
+                                <th>Tipo</th>
+                                <th>Fecha y Hora</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
                 </div>
             </div>
+        </div>
         </div>
         
         <!-- Add Voluntario HTML -->
@@ -381,6 +380,8 @@
             var definirDataTable = function(id) {
                 $(id).DataTable({
                     dom: 'lBfrtip',
+                    pageLength: 5,
+                    lengthMenu: [5, 10, 20, 30, 50, 100, 200, 500],
                     buttons: [{
                             extend: 'copyHtml5',
                             text: '<i class="fa fa-copy"/> Copiar',
@@ -511,6 +512,8 @@
             var definirDataTableHistorial = function(id) {
                 $(id).DataTable({
                     dom: 'lBfrtip',
+                    pageLength: 5,
+                    lengthMenu: [5, 10, 20, 30, 50, 100, 200, 500],
                     buttons: [{
                             extend: 'copyHtml5',
                             text: '<i class="fa fa-copy"/> Copiar',
