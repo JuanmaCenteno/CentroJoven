@@ -2,8 +2,8 @@
 	if (!isset($_SESSION)) {
 	    session_start();
 	}
-	
-	if($_SESSION['id'] != 1 || $_SESSION['id'] != "1"){
+
+	if($_SESSION['id'] != 1 || $_SESSION['id'] != "1" || empty($_SESSION['id'])){
 	    header("Location: http://localhost/Centrojoven/fichar.php");
 	    die();
 	}
@@ -171,7 +171,7 @@
 							</div>
 							<div class="form-group">
 								<label for="nombre">DNI</label>
-								<input type="text" class="form-control" id="editDni" name="dni" disabled>
+								<input type="text" class="form-control" id="editDni" name="dni">
 							</div>
 							<div class="form-group">
 								<label for="nombre">Fecha de nacimiento</label>
@@ -234,6 +234,27 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- Modal Respuesta -->
+		<div id="modal" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 id="tituloModal" class="modal-title"></h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close" onClick="window.location.reload();">
+						<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p id="textoModal"></p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal" onClick="window.location.reload();">Cerrar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Fin Modal -->
 		<!-- JAVASCRIPT FILES -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -283,7 +304,7 @@
 			        e.preventDefault();
 			        var formData = new FormData($('#editVoluntario')[0]);
 			        $.ajax({
-			            url: 'editVoluntario.php',
+			            url: './funciones/editVoluntario.php',
 			            type: 'POST',
 			            data: formData,
 			            async: false,
@@ -292,8 +313,11 @@
 			            enctype: 'multipart/form-data',
 			            processData: false,
 			            success: function() {
-			                // MODAL OK
-			                location.reload();
+			                //console.log(response);
+							$('#tituloModal').text("ATENCIÓN");
+							$('#textoModal').text("El voluntario se ha editado correctamente.");
+							$('#modal').modal('show');
+							//location.reload();
 			            },
 			            error: function(e) {
 			                $('#modalErrorConsulta').modal('show');
@@ -306,7 +330,7 @@
 			        e.preventDefault();
 			        var formData = new FormData($('#deleteVoluntario')[0]);
 			        $.ajax({
-			            url: 'deleteVoluntario.php',
+			            url: './funciones/deleteVoluntario.php',
 			            type: 'POST',
 			            data: formData,
 			            async: false,
@@ -315,8 +339,11 @@
 			            enctype: 'multipart/form-data',
 			            processData: false,
 			            success: function() {
-			                // MODAL OK
-			                location.reload();
+			                //console.log(response);
+							$('#tituloModal').text("ATENCIÓN");
+							$('#textoModal').text("El usuario se ha borrado correctamente.");
+							$('#modal').modal('show');
+							//location.reload();
 			            },
 			            error: function(e) {
 			                console.log("There was an error with your request...");

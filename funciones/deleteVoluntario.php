@@ -14,25 +14,19 @@ $db = DB::getInstance();
 
 // Declaración POST
 
-$email = htmlspecialchars($_POST["email"], ENT_QUOTES);
-$contrasena = htmlspecialchars($_POST["contrasena"], ENT_QUOTES);
-$contrasena = hash('sha256', $contrasena);
+$dni = htmlspecialchars($_POST["dni"], ENT_QUOTES);
+//echo $dni;
 
 // Código BD
 // LOGIN
-$query = "SELECT DNI as dni FROM voluntarios WHERE Email like ? AND Password like ?";
+$query = "DELETE FROM voluntarios WHERE dni like ?";
 $stmt = $db->prepare($query);
-$stmt->bind_param('ss', $email, $contrasena);
+$stmt->bind_param('s', $dni);
 $stmt->execute();
-$res = $stmt->get_result();
-$resultado = [];
-while ($row = $res->fetch_array(MYSQLI_ASSOC)) {
-    array_push($resultado, $row);
-}
-
-if (count($resultado) > 0) {    
-    $_SESSION['dni'] = $resultado[0]['dni'];
-    //echo $_SESSION['dni'];
+if($stmt){
+    $resultado = [ "mensaje"  => "Voluntario borrado correctamente"];
+}else{
+    $resultado = [ "mensaje"  => "Voluntario no se ha borrado"];
 }
 
 $db->close();

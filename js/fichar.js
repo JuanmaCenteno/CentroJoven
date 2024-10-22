@@ -1,6 +1,7 @@
 $(document).ready(function () {
     // POST
 
+    // Comportamiento botón o de Entrada/Salida o cambio a panel de administración
     $('.btnPost').on('click',function (e) {
         if($(this).text() == "Panel de Administración"){
             window.location.href = "crudVoluntarios.php";
@@ -8,7 +9,7 @@ $(document).ready(function () {
             e.preventDefault();        
             datos = JSON.stringify({ 'tipo': $(this).text()});
             //console.log(datos);
-            
+            // Post que manda a la BD entrada o salida
             $.ajax({
                 url: './funciones/entradaSalida.php',
                 type: 'POST',

@@ -30,7 +30,9 @@ $stmt->bind_param('ssssssssss',$nombreCompleto, $apellido1, $apellido2, $dni, $f
 try{
     $stmt->execute();
     if ($stmt) {
-        echo "Inserción enviada";    
+        echo json_encode(array(
+            "respuesta" => "Inserción correcta"
+        ));  
     } else {
         echo "Error en la inserción de solicitud";
         exit;

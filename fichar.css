@@ -1,0 +1,20 @@
+@media screen and (max-width: 768px)  {
+    /* Estilos para dispositivos móviles con ancho máximo de 768px */
+    #card{
+        height: 600px;
+        background-color: red;
+    }
+    h3{
+        font-size: 60px;
+    }
+    .rowmovil{
+        height: 20%;
+    }
+    .btnmovil{
+        font-size: 30px;
+    }
+
+    body{
+        background-color: red;
+    }
+  }

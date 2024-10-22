@@ -3,10 +3,7 @@
 	    session_start();
 	}
 	
-	if ($_SESSION['dni'] != '') {
-	  header("Location: fichar.php");
-	  exit();
-	}
+	
 	?>
 <!DOCTYPE html>
 <html lang="es">
@@ -20,25 +17,15 @@
 		<!-- Custom styles -->
 		<link rel="stylesheet" href="styles.css" />
 		<!-- Font Awesome -->
-		<link
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-			rel="stylesheet"
-			/>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
 		<!-- Google Fonts -->
-		<link
-			href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-			rel="stylesheet"
-			/>
+		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
 		<!-- MDB -->
-		<link
-			href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css"
-			rel="stylesheet"
-			/>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet"/>
 	</head>
 	<body class="bg-black">
+	<div class="container py-5 h-100 d-flex justify-content-center align-items-center">
 		<form id="formData" class="needs-validation" novalidate>
-			<div class="container py-5 h-100">
 				<div class="row d-flex justify-content-center align-items-center h-100">
 					<div class="col">
 						<div class="card card-registration my-4">
@@ -79,8 +66,30 @@
 						</div>
 					</div>
 				</div>
+				<!-- Modal Respuesta -->
+		<div id="modal" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 id="tituloModal" class="modal-title"></h5>
+						<button type="button" class="close" data-mdb-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p id="textoModal"></p>
+					</div>
+					<div id="footerModal" class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cerrar</button>
+					</div>
+				</div>
 			</div>
+		</div>
+			
 		</form>
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.1/mdb.min.js"></script>
 		<script>
 			(() => {
 			  'use strict';

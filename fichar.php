@@ -3,6 +3,11 @@
 	    session_start();
 	}
 	
+	if($_SESSION['dni'] == "" || empty($_SESSION['dni'])){
+	    header("Location: http://localhost/Centrojoven/login.php");
+	    die();
+	}
+
 	//$_SESSION['id'] = "1";
 	//$_SESSION['dni'] = "79165345N";
 	
@@ -47,6 +52,7 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
 		<!-- Custom styles -->
 		<link rel="stylesheet" href="styles.css" />
+		<link rel="stylesheet" href="fichar.css" />
 		<!-- Font Awesome -->
 		<link
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -64,21 +70,22 @@
 			/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
-	<body class="bg-black">
+	<body style="background-color: #1f8695;">
 		<div class="contenedor container py-5 h-100" style="position:relative; margin: 0 auto;">
 			<div class="row d-flex justify-content-center align-items-center h-100">
-				<div class="card-body p-md-5 text-black bg-white">
+				<div id="cardo" class="card-body p-md-5 text-black bg-white">
 					<h3 class="mb-5 text-uppercase" style="text-align: center">Centro Joven</h3>
-					<div class="row">
-						<button id="btnEntrada" type="submit" class="btnPost btn btn-success btn-lg ms-2" <?php if ($disableEntrada) { ?> disabled  <?php } ?>>Entrada</button>
+					<div class="row rowmovil">
+						<button id="btnEntrada" type="submit" class="btnPost btn btn-success btn-lg ms-2 btnmovil" <?php if ($disableEntrada) { ?> disabled  <?php } ?>>Entrada</button>
 					</div>
-					<div class="row mt-3">
-						<button id="btnSalida" type="submit" class="btnPost btn btn-danger btn-lg ms-2" <?php if ($disableSalida) { ?> disabled  <?php } ?>>Salida</button>
+					<div class="row mt-3 rowmovil">
+						<button id="btnSalida" type="submit" class="btnPost btn btn-danger btn-lg ms-2 btnmovil" <?php if ($disableSalida) { ?> disabled  <?php } ?>>Salida</button>
 					</div>
 					<?php if ($_SESSION['id'] == "1" || $_SESSION['id'] == 1) { ?>
-					<div class="row mt-3">
-						<button id="btnAdmin" type="submit" class="btnPost btn btn-primary btn-lg ms-2">Panel de Administración</button>
+					<div class="row mt-3 rowmovil">
+						<button id="btnAdmin" type="submit" class="btnPost btn btn-primary btn-lg ms-2 btnmovil">Panel de Administración</button>
 					</div>
 					<?php } ?>
 				</div>

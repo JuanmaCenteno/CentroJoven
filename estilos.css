@@ -7,7 +7,7 @@ body {
 }
  .container {
      padding: 2rem;
-     background-color: #71C5E8;
+     background-color: #1f8695;
      height: 100%;
      display: flex;
      justify-content: center;
@@ -19,7 +19,7 @@ body {
  .contenedor{
      padding: 0;
      margin: 0;
-     background-color: #7CD6FC;
+     background-color: #c0ebf1;
 }
  .table-responsive {
      width: 100%;
@@ -27,7 +27,7 @@ body {
 }
  .table {
      width: 100%;
-     background-color: white;
+     background-color: #c0ebf1;
      border-collapse: collapse;
 }
  .table th, .table td {
@@ -35,14 +35,14 @@ body {
      border: 1px solid #dee2e6;
 }
  .table th {
-     background-color: #f8f9fa;
+     background-color: #33c1d5;
      color: #333;
 }
  .table tbody tr:nth-child(even) {
-     background-color: #f9f9f9;
+     background-color: #c0ebf1;
 }
  .table tbody tr:hover {
-     background-color: #f5f5f5;
+     background-color: white;
 }
  .btn {
      display: inline-block;

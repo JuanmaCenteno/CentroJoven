@@ -14,25 +14,32 @@ $db = DB::getInstance();
 
 // Declaración POST
 
+//var_dump($_POST);
+
+$nombre = htmlspecialchars($_POST["nombre"], ENT_QUOTES);
+$apellido1 = htmlspecialchars($_POST["apellido1"], ENT_QUOTES);
+$dni = htmlspecialchars($_POST["dni"], ENT_QUOTES);
+$apellido2 = htmlspecialchars($_POST["apellido2"], ENT_QUOTES);
 $email = htmlspecialchars($_POST["email"], ENT_QUOTES);
-$contrasena = htmlspecialchars($_POST["contrasena"], ENT_QUOTES);
-$contrasena = hash('sha256', $contrasena);
+$fechaNacimiento = htmlspecialchars($_POST["fechaNacimiento"], ENT_QUOTES);
+$password = htmlspecialchars($_POST["password"], ENT_QUOTES);
+$direccion = htmlspecialchars($_POST["direccion"], ENT_QUOTES);
+$cPostal = htmlspecialchars($_POST["cPostal"], ENT_QUOTES);
+$movil = htmlspecialchars($_POST["movil"], ENT_QUOTES);
+
+
+//echo $dni;
 
 // Código BD
 // LOGIN
-$query = "SELECT DNI as dni FROM voluntarios WHERE Email like ? AND Password like ?";
+$query = "UPDATE voluntarios SET Nombre = ?, Apellido1 = ?, Apellido2 = ?, FechaNacimiento = ?, Email = ?, Direccion = ?, CPostal = ?, TlfMovil = ? WHERE dni like ?";
 $stmt = $db->prepare($query);
-$stmt->bind_param('ss', $email, $contrasena);
+$stmt->bind_param('sssssssss', $nombre, $apellido1, $apellido2, $fechaNacimiento, $email, $direccion, $cPostal, $movil, $dni);
 $stmt->execute();
-$res = $stmt->get_result();
-$resultado = [];
-while ($row = $res->fetch_array(MYSQLI_ASSOC)) {
-    array_push($resultado, $row);
-}
-
-if (count($resultado) > 0) {    
-    $_SESSION['dni'] = $resultado[0]['dni'];
-    //echo $_SESSION['dni'];
+if($stmt){
+    $resultado = [ "mensaje"  => "Voluntario editado correctamente"];
+}else{
+    $resultado = [ "mensaje"  => "Voluntario no se ha editado"];
 }
 
 $db->close();

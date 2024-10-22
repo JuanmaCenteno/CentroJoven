@@ -1,37 +1,3 @@
-// Patrones de validación
-var patronDate = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
-var patronTlfMovil = new RegExp("(\\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}");
-var patronTlfFijo = new RegExp("(\\+34|0034|34)?[ -]*(9)[ -]*([0-9][ -]*){8}");
-var patronEmail = new RegExp("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$");
-
-// Variables de validación
-var direccionInstalacionValida = false;
-var dniValido = false;
-var razonSocialValido = false;
-var nombreApellidosValido = false;
-var fechaValido = false;
-var movilValido = false;
-var emailValido = false;
-var checkDatos = false;
-var date = "";
-var checkNumeroNuevo = false;
-var checkNumeroAntiguo = false;
-var movilNuevoValido = false;
-var checkTitular = false;
-var iban = "";
-var ibanValido = false;
-var direccionValida = false;
-var checkNuevaDireccion = true;
-var direccionFacturacionValida = false;
-var checkPrestacion = false;
-var municipioSeleccionado = false;
-var calleSeleccionada = false;
-var tarjetaOk = false;
-var fechTarjOk = false;
-var tarj = false;
-
-
-
 $(document).ready(function () {
     // POST
     $('#formData').submit(function (e) {
@@ -61,30 +27,33 @@ $(document).ready(function () {
                 enctype: 'multipart/form-data',
                 processData: false,
                 success: function (response) {
-                    console.log(response.respuesta);
+                    //console.log(response.respuesta);
+                    const myModal = new mdb.Modal(document.getElementById('modal'));
                     if(response.respuesta === "Duplicado"){
-                        alert("Usuario Existente");
-                        window.location.href = "register.php";
-                        /*
-                        $(':input[type="submit"]').prop('disabled', true);
-                        // CAMBIAR SI ESO
-                        $("form").find("input").each(function() {
-                            $(this).val("");
-                        })
-                        */
+                        $('#tituloModal').text("ATENCIÓN");
+                        $('#textoModal').text("Ya existe un usuario con ese DNI o email.");
+                        //location.reload();
                     }else{
-                        alert("Usuario creado correctamente");
-                        window.location.href = "login.php";
+                        //alert("HOLA");
+                        $('#tituloModal').text("ÉXITO");
+                        $('#textoModal').text("Usuario creado correctamente.");
+                        $('#footerModal').append('<button type="button" class="btn btn-secondary" onclick="window.location.href = \'./login.php\';">Iniciar Sesión</button>');
+                        $('input').val('');
                     }
+                    myModal.show();
                     //finForm();
                 }
             });
             return false;
         } else{
-            alert("Tiene campos sin rellenar");
+            const myModal = new mdb.Modal(document.getElementById('modal'));
+            $('#tituloModal').text("ATENCIÓN");
+            $('#textoModal').text("Tiene campos sin rellenar.");
+            myModal.show();
         }
     });
 
+    // Comportamiento de botones
     $('input').on('input', function () {
         if(this.value.length > 0){
             $(this).addClass("active");  
@@ -93,6 +62,7 @@ $(document).ready(function () {
         }        
     });
     
+    // Validación del DNI
     $('#dni').on('input', function () {
         if(this.value.length == 9){
             if (validarDni(this.value)) {
@@ -106,6 +76,7 @@ $(document).ready(function () {
     });    
 });
 
+// Función que valida DNI
 function validarDni(value) {
 
     var validChars = 'TRWAGMYFPDXBNJZSQVHLCKET';
